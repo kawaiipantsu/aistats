@@ -102,7 +102,42 @@ ai-stats --version
 
 Use a current stable compiler. If you prefer a binary in the checkout, run
 `cargo build --release --locked`, then use `./target/release/ai-stats`.
-This project is distributed as source; there are no prebuilt release downloads.
+Source builds remain the default. Debian packages can also be built locally
+and are intended for the THUGS(red) APT repository; no GitHub releases are used.
+
+## Build Debian packages
+
+On Debian or Ubuntu, install the packaging tools alongside the build prerequisites:
+
+```bash
+sudo apt-get install -y binutils dpkg-dev make
+make deb
+```
+
+The package is written to `dist/ai-stats_0.1.0-1_amd64.deb` or
+`dist/ai-stats_0.1.0-1_arm64.deb`, according to your machine. Install it with:
+
+```bash
+sudo apt install ./dist/ai-stats_0.1.0-1_"$(dpkg --print-architecture)".deb
+ai-stats --version
+```
+
+It installs `/usr/bin/ai-stats`, contains a manual page and the required license notices, and does
+not bundle configuration, logs, or API keys. The package declares the minimum
+glibc version required by the binary. Build on Debian 12 to target Debian 12 and
+newer; a build on a newer distribution may require that newer runtime.
+
+To cross-build ARM64 from an AMD64 Debian/Ubuntu machine:
+
+```bash
+sudo apt-get install -y gcc-aarch64-linux-gnu libc6-dev-arm64-cross binutils-aarch64-linux-gnu
+rustup target add aarch64-unknown-linux-gnu
+make deb ARCH=arm64
+```
+
+Use `DEB_VERSION=0.1.0-2 make deb` to set a new Debian package revision. Built
+packages stay in the ignored `dist/` directory. Deployment credentials and
+repository administration are kept outside this source tree.
 
 ## Your first report
 

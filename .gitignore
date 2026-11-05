@@ -606,3 +606,8 @@ __pycache__/
 
 # The example configuration contains placeholders only.
 !contrib/config.example.yaml
+
+# Private deployment runbooks must never enter the public source tree.
+/*-apt.txt
+/deploy*.txt
+/deployment*.md

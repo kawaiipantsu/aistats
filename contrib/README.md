@@ -35,3 +35,8 @@ Files placed here should have a clear purpose related to supporting the project.
   the vendored fonts and original mascot SVG. Run with Node 22+ and Chromium;
   optionally set `CHROMIUM` to the browser executable. No npm packages or
   network access are needed. Rebuild the Rust binary after changing the image.
+
+- `build-deb.sh` — builds an AMD64 or ARM64 Debian package with explicit runtime
+  dependencies, a manual page, and license notices. Use `make deb`; see
+  the root README for native and cross-compilation instructions.
+- `ai-stats.1` — the manual page included in Debian packages.

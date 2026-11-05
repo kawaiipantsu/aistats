@@ -1,0 +1,90 @@
+.TH AI-STATS 1 "November 2026" "AI-Stats" "User Commands"
+.SH NAME
+ai-stats \- local AI chat statistics and usage reports
+.SH SYNOPSIS
+.B ai-stats
+.I command
+.RI [ options ]
+.br
+.B ai-stats --fun-stats
+.RI [ options ]
+.SH DESCRIPTION
+AI-Stats produces PISG-inspired statistics from local Claude Code and Codex
+session logs. It also collects provider usage and cost data in a local SQLite
+cache and renders reports in multiple formats.
+.SH COMMANDS
+.TP
+.B init
+Create the private configuration directory and cache.
+.TP
+.B config show|path|set
+Inspect or edit configuration. Prefer environment variables for credentials.
+.TP
+.B providers list|test
+List configured providers or test their connectivity.
+.TP
+.B sync
+Fetch usage and cost data from enabled providers.
+.TP
+.B import FILE
+Import CSV or JSON usage records.
+.TP
+.B report
+Render a usage and cost report.
+.TP
+.B models
+Query model inventories from configured local inference servers.
+.SH FUN STATS
+.TP
+.B --fun-stats
+Read local Claude Code and Codex logs and generate a report. As root, scans all
+local accounts; otherwise scans only the invoking account.
+.TP
+.BI --format " FORMAT"
+Choose text, markdown, html, json, or discord.
+.TP
+.BI --period " PERIOD"
+Choose a period such as 7d, 30d, month, or all.
+.TP
+.BI --output " FILE"
+Write the report to a file. HTML output is self-contained.
+.TP
+.BI --ssh-host " HOST"
+Explicitly include a remote machine. Requires --ssh-key and remote Python 3.
+.TP
+.B --send
+With Discord output, explicitly deliver the report to the configured webhook.
+.SH ENVIRONMENT
+.TP
+.B AI_STATS_CONFIG_DIR
+Override the configuration and cache directory.
+.TP
+.B XDG_CONFIG_HOME
+Parent configuration directory, used when AI_STATS_CONFIG_DIR is not set.
+.TP
+.B OPENAI_ADMIN_API_KEY, ANTHROPIC_ADMIN_API_KEY
+Provider admin credentials. Environment values override configuration values.
+.TP
+.B AI_STATS_DISCORD_WEBHOOK_URL
+Webhook used only when delivery is explicitly requested.
+.SH FILES
+.TP
+.I ~/.config/ai-stats/config.yaml
+Private provider and application configuration.
+.TP
+.I ~/.config/ai-stats/cache/usage.db
+Local usage and cost cache.
+.SH EXAMPLES
+.nf
+ai-stats init
+ai-stats --fun-stats --format html --output stats.html
+ai-stats report --period 30d --format markdown
+.fi
+.SH PRIVACY
+Reports should be reviewed before sharing. Pseudonyms hide account names but
+activity patterns may still be recognizable. Never publish configuration files,
+credentials, private chat logs, or unreviewed usage reports.
+.SH SEE ALSO
+Run ai-stats --help or ai-stats COMMAND --help for the complete option list.
+.br
+https://github.com/kawaiipantsu/aistats

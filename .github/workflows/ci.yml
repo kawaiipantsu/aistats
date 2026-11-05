@@ -21,8 +21,10 @@ jobs:
       matrix:
         include:
           - arch: AMD64
+            deb_arch: amd64
             runner: ubuntu-24.04
           - arch: ARM64
+            deb_arch: arm64
             runner: ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
     steps:
@@ -60,3 +62,11 @@ jobs:
           "$RUNNER_TEMP/ai-stats-install/bin/ai-stats" --version
           "$RUNNER_TEMP/ai-stats-install/bin/ai-stats" init
           "$RUNNER_TEMP/ai-stats-install/bin/ai-stats" config show
+
+      - name: Build and install Debian package
+        shell: bash
+        run: |
+          make deb ARCH=${{ matrix.deb_arch }}
+          sudo dpkg --install dist/ai-stats_*_${{ matrix.deb_arch }}.deb
+          /usr/bin/ai-stats --version
+          sudo dpkg --remove ai-stats
