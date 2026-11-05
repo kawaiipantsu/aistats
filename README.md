@@ -44,7 +44,23 @@ One Rust binary. Your own machine. No hosted dashboard required.
 
 ## INSTALL
 
-### Linux: Debian / Ubuntu / Raspberry Pi OS (64-bit)
+### From the THUGS(red) APT repository
+
+Debian packages are available in the **zerotrust** suite for **AMD64 and ARM64**,
+built against Debian 12 for Debian 12 and newer. Configure the repository using
+its [official setup guide](https://apt.thugs.red/setup), including its dedicated
+signing key, then install:
+
+```bash
+sudo apt update
+sudo apt install ai-stats
+ai-stats --version
+```
+
+The package installs `/usr/bin/ai-stats` and `man ai-stats`. To build everything
+yourself instead, follow the source installation steps below.
+
+### From source: Debian / Ubuntu / Raspberry Pi OS (64-bit)
 
 The same commands work on **AMD64 / x86_64** and **ARM64 / aarch64**, including
 64-bit Raspberry Pi OS. Compile on the machine where you intend to run AI-Stats;
@@ -103,7 +119,7 @@ ai-stats --version
 Use a current stable compiler. If you prefer a binary in the checkout, run
 `cargo build --release --locked`, then use `./target/release/ai-stats`.
 Source builds remain the default. Debian packages can also be built locally
-and are intended for the THUGS(red) APT repository; no GitHub releases are used.
+and are available in the THUGS(red) APT repository; no GitHub releases are used.
 
 ## Build Debian packages
 
