@@ -1,0 +1,35 @@
+[package]
+name = "ai-stats"
+version = "0.1.0"
+edition = "2024"
+description = "PISG-inspired statistics for AI chats, plus local AI usage and cost reports"
+license = "MIT"
+repository = "https://github.com/kawaiipantsu/aistats"
+homepage = "https://thugs.red"
+readme = "README.md"
+keywords = ["ai", "statistics", "cli", "llm", "analytics"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+anyhow = "1.0.104"
+async-trait = "0.1.92"
+base64 = "0.22.1"
+chrono = { version = "0.4.45", features = ["serde"] }
+clap = { version = "4.6.7", features = ["derive"] }
+comfy-table = "8.0.0"
+csv = "1.4.0"
+dirs = "7.0.0"
+printpdf = "0.7"
+reqwest = { version = "0.13.5", default-features = false, features = ["json", "query", "rustls"] }
+rusqlite = { version = "0.40.2", features = ["bundled"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.151", features = ["preserve_order"] }
+serde_yaml = "0.9.34"
+thiserror = "2.0.20"
+tempfile = "3"
+tokio = { version = "1.53.1", features = ["rt-multi-thread", "macros", "time", "process", "io-util", "fs"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2.189"

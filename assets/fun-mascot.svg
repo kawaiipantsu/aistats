@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 340" fill="none" aria-hidden="true" class="mascot">
+  <defs>
+    <linearGradient id="robot-shell" x1="136" y1="90" x2="310" y2="263" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8ffb6"/><stop offset="1" stop-color="#8bdacb"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="226" cy="297" rx="125" ry="17" fill="#0b0f19" opacity=".5"/>
+  <circle cx="226" cy="170" r="140" stroke="#a6a3ff" stroke-opacity=".22" stroke-dasharray="4 11"/>
+  <circle cx="226" cy="170" r="111" stroke="#c3f69a" stroke-opacity=".12"/>
+  <g class="robot-float">
+    <path d="M216 89V61" stroke="#c8efa7" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="216" cy="51" r="13" fill="#ffcc82"/>
+    <path d="M137 178L104 201M306 178L337 202" stroke="#92cfbd" stroke-width="14" stroke-linecap="round"/>
+    <rect x="125" y="88" width="189" height="159" rx="45" fill="url(#robot-shell)"/>
+    <path d="M144 229L145 271L177 263L199 277L221 265L244 277L266 263L293 270L295 229" fill="#e9eadf"/>
+    <path d="M165 242H272M165 252H208M235 252H272" stroke="#abb3a3" stroke-width="4" stroke-linecap="round"/>
+    <rect x="142" y="112" width="155" height="91" rx="29" fill="#182632"/>
+    <g class="robot-eyes" stroke="#c3f69a" stroke-width="9" stroke-linecap="round">
+      <path d="M168 149L181 140L194 149"/><path d="M245 149L258 140L271 149"/>
+    </g>
+    <path d="M207 171Q220 184 234 171" stroke="#c3f69a" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="161" cy="175" r="7" fill="#ffb4ad" opacity=".7"/><circle cx="279" cy="175" r="7" fill="#ffb4ad" opacity=".7"/>
+    <rect x="203" y="216" width="33" height="9" rx="4.5" fill="#344e4a"/>
+  </g>
+  <g class="float-note">
+    <rect x="21" y="78" width="93" height="55" rx="15" fill="#34364e" stroke="#626484"/>
+    <path d="M77 133L94 146V128" fill="#34364e"/>
+    <path d="M40 98L35 105L40 112M53 98L58 105L53 112M76 98L70 112" stroke="#d4c3ff" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g class="float-spark" stroke="#ffcc82" stroke-linecap="round" stroke-width="4">
+    <path d="M352 64V88M340 76H364M84 234V250M76 242H92"/>
+  </g>
+  <g transform="rotate(12 357 231)">
+    <rect x="326" y="203" width="62" height="57" rx="12" fill="#d4c3ff"/>
+    <path d="M388 216H396Q410 233 389 244" stroke="#d4c3ff" stroke-width="8"/>
+    <path d="M345 192Q335 183 344 173M363 192Q353 181 362 171" stroke="#d4c3ff" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+    <path d="M343 224L350 231L343 238M359 238H370" stroke="#34364e" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

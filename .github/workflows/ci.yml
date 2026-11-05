@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-and-test:
+    name: Linux ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: AMD64
+            runner: ubuntu-24.04
+          - arch: ARM64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Format check
+        run: cargo fmt --check
+
+      - name: Clippy
+        run: cargo clippy --locked --all-targets -- -D warnings
+
+      - name: Rust tests
+        run: cargo test --locked
+
+      - name: SSH helper tests
+        run: python3 -B -m unittest discover -s src/fun -p remote_test.py
+
+      - name: Compile optimized binary
+        run: cargo build --release --locked
+
+      - name: Smoke-test installation
+        shell: bash
+        run: |
+          cargo install --path . --locked --root "$RUNNER_TEMP/ai-stats-install"
+          export AI_STATS_CONFIG_DIR="$RUNNER_TEMP/ai-stats-smoke"
+          "$RUNNER_TEMP/ai-stats-install/bin/ai-stats" --version
+          "$RUNNER_TEMP/ai-stats-install/bin/ai-stats" init
+          "$RUNNER_TEMP/ai-stats-install/bin/ai-stats" config show

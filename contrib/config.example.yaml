@@ -1,0 +1,49 @@
+# Example ai-stats configuration.
+#
+# The real file lives at ~/.config/ai-stats/config.yaml and is created by
+# `ai-stats init`. This example shows every available key; you don't need to
+# set all of them; unset values fall back to sane defaults.
+#
+# Admin API keys can be set here OR via environment variables, which always
+# take priority: OPENAI_ADMIN_API_KEY, ANTHROPIC_ADMIN_API_KEY,
+# AI_STATS_DISCORD_WEBHOOK_URL. Prefer environment variables if you'd rather
+# not keep secrets on disk at all.
+
+version: 1
+
+general:
+  timezone: UTC
+  currency: USD
+
+providers:
+  openai:
+    enabled: true
+    # Organization ADMIN key (sk-admin-...), not a regular project API key.
+    admin_api_key: null
+    base_url: https://api.openai.com/v1
+
+  anthropic:
+    enabled: true
+    # Admin API key (sk-ant-admin01-...).
+    admin_api_key: null
+    base_url: https://api.anthropic.com/v1
+
+  ollama:
+    enabled: true
+    base_url: http://localhost:11434
+
+  lmstudio:
+    enabled: true
+    base_url: http://localhost:1234
+
+pricing:
+  # Overrides for the built-in fallback pricing table (USD per 1,000,000
+  # tokens), used only when a provider doesn't report cost directly.
+  overrides:
+    my-custom-model:
+      input_per_million: 1.0
+      output_per_million: 3.0
+      cached_input_per_million: 0.1
+
+discord:
+  webhook_url: null

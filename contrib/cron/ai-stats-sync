@@ -1,0 +1,12 @@
+# Example /etc/cron.d entry for unattended periodic syncing.
+#
+# Install with:
+#   sudo cp contrib/cron/ai-stats-sync /etc/cron.d/ai-stats-sync
+#   sudo chmod 644 /etc/cron.d/ai-stats-sync
+#
+# Replace `youruser` with the account that owns ~/.config/ai-stats/.
+# Runs every hour; `sync` is incremental (it resumes from the last synced
+# point per provider), so hourly is cheap even though report periods can
+# span months.
+
+15 * * * * youruser /usr/local/bin/ai-stats sync >> /home/youruser/.config/ai-stats/logs/sync.log 2>&1

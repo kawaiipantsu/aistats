@@ -1,0 +1,49 @@
+#!/bin/sh
+# Publish a complete fun-stats HTML export and its social image atomically.
+# Install as /usr/local/sbin/ai-stats-refresh-html (mode 755).
+# Usage: ai-stats-refresh-html /absolute/path/index.html https://stats.example.com/ [SSH options]
+# Use flock around this script when scheduling it; see ai-stats-fun-stats.
+set -eu
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 /absolute/path/index.html https://stats.example.com/ [SSH options]" >&2
+    exit 2
+fi
+
+report_output=$1
+report_url=$2
+shift 2
+case "$report_output" in
+    /*) ;;
+    *) echo "Output must be an absolute file path" >&2; exit 2 ;;
+esac
+report_dir=$(dirname -- "$report_output")
+report_name=$(basename -- "$report_output")
+if [ ! -d "$report_dir" ] || [ -d "$report_output" ]; then
+    echo "Output must be a file in an existing directory" >&2
+    exit 2
+fi
+
+# Staging on the same filesystem makes the final rename atomic. mktemp's
+# private directory also keeps incomplete files away from the web server.
+report_stage=$(mktemp -d "$report_dir/.ai-stats-refresh.XXXXXX")
+trap 'rm -rf -- "$report_stage"' EXIT
+trap 'exit 1' HUP INT TERM
+
+/usr/local/bin/ai-stats --fun-stats --format html --period all \
+    --public-url "$report_url" --output "$report_stage/$report_name" "$@"
+
+# Publish images before the document that references them. Glob the PNGs so
+# a later versioned social-image filename needs no change to the cron script.
+for report_image in "$report_stage"/*.png; do
+    if [ ! -f "$report_image" ]; then
+        echo "Export did not produce a social preview PNG" >&2
+        exit 1
+    fi
+    chmod 644 "$report_image"
+    mv -f -- "$report_image" "$report_dir/$(basename -- "$report_image")"
+done
+chmod 644 "$report_stage/$report_name"
+mv -f -- "$report_stage/$report_name" "$report_output"
+date -Is
+echo "Published $report_output"

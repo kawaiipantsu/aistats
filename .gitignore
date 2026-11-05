@@ -1,0 +1,608 @@
+# =============================================================================
+# Secrets / Credentials / Local Configuration
+# =============================================================================
+
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+*.env
+*.secret
+*.secrets
+*.credentials
+
+secrets/
+.secret/
+.secrets/
+credentials/
+.creds/
+
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+
+# Local configuration
+
+*.local
+*.local.*
+config.local.*
+config/*.local
+config/*.local.*
+
+# =============================================================================
+# Logs / Runtime Data
+# =============================================================================
+
+logs/
+log/
+*.log
+*.log.*
+*.out
+*.err
+*.pid
+*.pid.lock
+*.lock
+*.sock
+
+run/
+runtime/
+tmp/
+temp/
+.tmp/
+.cache/
+cache/
+
+# =============================================================================
+# Build / Binary / Distribution Output
+# =============================================================================
+
+bin/
+build/
+builds/
+dist/
+out/
+output/
+release/
+releases/
+artifacts/
+packages/
+pkg/
+
+debug/
+target/
+
+*.bin
+*.exe
+*.dll
+*.so
+*.so.*
+*.dylib
+*.a
+*.lib
+*.o
+*.obj
+*.lo
+
+# Debug symbols / profiling
+
+*.dSYM/
+*.pdb
+*.prof
+*.profraw
+*.gcda
+*.gcno
+
+# =============================================================================
+# Rust
+# =============================================================================
+
+target/
+
+# Keep Cargo.lock for applications/binaries.
+# Libraries may choose to ignore it depending on project policy.
+# ai-stats is a binary, so Cargo.lock is tracked for reproducible builds.
+# (Overrides the generic `*.lock` rule earlier in this file, which is
+# intended for OS/app lock files, not Cargo's dependency lockfile.)
+!Cargo.lock
+**/*.rs.bk
+
+# rustfmt backup files
+*.rs.bk
+
+# =============================================================================
+# Go
+# =============================================================================
+# Compiled test binaries
+
+*.test
+
+# Coverage / profiling
+coverage.out
+coverage.txt
+coverage.html
+*.cover
+*.cov
+
+# Go workspace files are commonly local/developer-specific
+go.work
+go.work.sum
+
+# Vendoring is project-specific.
+# Uncomment if vendor/ should not be committed.
+# vendor/
+
+# =============================================================================
+# Make / Autotools / C / C++
+# =============================================================================
+
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.so
+*.so.*
+*.dylib
+
+.deps/
+.libs/
+
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.cache
+config.log
+config.status
+configure
+libtool
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+cmake_install.cmake
+compile_commands.json
+
+# Meson
+meson-private/
+meson-logs/
+meson-info/
+_build/
+
+# Ninja
+.ninja_deps
+.ninja_log
+
+# =============================================================================
+# Debian / dpkg / debhelper
+# =============================================================================
+
+*.deb
+*.ddeb
+*.udeb
+*.changes
+*.build
+*.buildinfo
+*.dsc
+
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/*.substvars
+debian/*.debhelper
+debian/*.debhelper.log
+
+debian/tmp/
+debian/*/DEBIAN/
+
+# Common generated Debian package directories
+debian/*/
+
+# Preserve Debian packaging source/configuration
+!debian/control
+!debian/rules
+!debian/changelog
+!debian/copyright
+!debian/compat
+!debian/source/
+!debian/source/**
+!debian/patches/
+!debian/patches/**
+!debian/tests/
+!debian/tests/**
+!debian/*.install
+!debian/*.service
+!debian/*.socket
+!debian/*.timer
+!debian/*.path
+!debian/*.conf
+!debian/*.dirs
+!debian/*.docs
+!debian/*.links
+!debian/*.manpages
+!debian/*.postinst
+!debian/*.preinst
+!debian/*.postrm
+!debian/*.prerm
+!debian/*.triggers
+
+# Debian source build artifacts
+../*.deb
+../*.ddeb
+../*.udeb
+../*.changes
+../*.build
+../*.buildinfo
+../*.dsc
+../*.tar.gz
+../*.tar.xz
+
+# =============================================================================
+# Package / Archive Output
+# =============================================================================
+
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tgz
+*.tbz
+*.tbz2
+*.txz
+*.zip
+*.7z
+*.rar
+*.gz
+*.bz2
+*.xz
+
+# =============================================================================
+# Test / Coverage Output
+# =============================================================================
+
+coverage/
+.coverage/
+test-results/
+test-output/
+reports/
+
+lcov.info
+*.lcov
+
+# =============================================================================
+# Generated Files
+# =============================================================================
+
+generated/
+.gen/
+gen/
+
+*.generated
+*.generated.*
+
+# =============================================================================
+# Temporary / Backup Files
+# =============================================================================
+
+*~
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
+*.tmp
+*.temp
+
+.#*
+#*#
+
+# =============================================================================
+# IDE / Editor
+# =============================================================================
+
+.idea/
+.vscode/
+.vscode-test/
+
+*.iml
+*.ipr
+*.iws
+
+.project
+.classpath
+.settings/
+
+# Zed
+.zed/
+
+# =============================================================================
+# Visual Studio / VS Code / JetBrains
+# =============================================================================
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+cmake-build-debug/
+cmake-build-release/
+
+# =============================================================================
+# macOS
+# =============================================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+.Spotlight-V100
+.Trashes
+
+# =============================================================================
+# Windows
+# =============================================================================
+
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+$RECYCLE.BIN/
+
+# =============================================================================
+# Linux
+# =============================================================================
+
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# Vim / Emacs
+# =============================================================================
+
+*.swp
+*.swo
+*.swn
+*~
+
+.vim/
+.emacs.d/
+.dir-locals.el
+
+# =============================================================================
+# Language Server / Tooling
+# =============================================================================
+
+.rust-analyzer/
+.gopls/
+.clangd/
+.cache/
+
+# =============================================================================
+# Docker / Containers
+# =============================================================================
+
+docker-data/
+container-data/
+volumes/
+
+# Local overrides
+docker-compose.override.yml
+compose.override.yml
+
+# =============================================================================
+# Terraform / Infrastructure
+# =============================================================================
+
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+crash.log
+crash.*.log
+
+# Variable files may contain secrets
+*.tfvars
+*.tfvars.json
+
+# =============================================================================
+# Ansible
+# =============================================================================
+
+*.retry
+
+# Vault password files
+.vault_pass
+.vault-password
+vault-password
+
+# =============================================================================
+# Certificates / Security Material
+# =============================================================================
+
+private/
+private-keys/
+keys/
+
+*.private
+*.privatekey
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Certificate signing requests may contain identifying information
+*.csr
+
+# =============================================================================
+# Databases / Local Persistent Data
+# =============================================================================
+
+data/
+db/
+database/
+databases/
+
+*.db
+*.db3
+*.sqlite
+*.sqlite3
+
+*.db-journal
+*.sqlite-journal
+*.sqlite3-journal
+
+*.db-shm
+*.db-wal
+*.sqlite-shm
+*.sqlite-wal
+
+*.dump
+*.sql.gz
+*.sql.xz
+
+# =============================================================================
+# Runtime Uploads / User Content
+# =============================================================================
+
+uploads/
+storage/
+sessions/
+
+# =============================================================================
+# Generated Documentation
+# =============================================================================
+
+docs/build/
+docs/generated/
+site/
+
+# =============================================================================
+# AI / Agent Local Files
+# =============================================================================
+
+# Local agent state, caches, and temporary working data
+.codex/
+.claude/
+.agent/
+.agents/
+
+# Do NOT ignore repository documentation such as:
+# docs/AGENTS.md
+# docs/ASSETS.md
+# docs/SECURITY.md
+
+# =============================================================================
+# Miscellaneous
+# =============================================================================
+
+*.tmp
+*.temp
+*.cache
+
+scratch/
+sandbox/
+work/
+workspace/
+
+# Core dumps
+core
+core.*
+*.core
+
+# Crash dumps
+*.stackdump
+
+# =============================================================================
+# IMPORTANT
+# =============================================================================
+# Never commit credentials, passwords, API keys, access tokens,
+# private keys, secret environment files, database dumps containing
+# sensitive information, or other private/internal security material.
+#
+# .gitignore is NOT a security boundary.
+#
+# Sensitive information that has already been committed remains in Git
+# history even after adding it to this file. Compromised credentials must
+# be revoked/rotated and repository history handled appropriately.
+#
+# Review files before every commit:
+#
+# git status
+# git diff --staged
+#
+# Project documentation, source code, Makefiles, Cargo.toml, Cargo.lock,
+# go.mod, go.sum, Debian packaging configuration, and other intentional
+# source-controlled files should remain tracked.
+
+
+# Added by cargo
+
+/target
+
+# AI-Stats local state and private publication material
+.*-owner
+.openai/
+.config/
+.ssh/
+.aws/
+.azure/
+.kube/
+.docker/
+id_rsa
+id_ed25519
+known_hosts
+authorized_keys
+.netrc
+.npmrc
+.pypirc
+config.yaml
+config.yml
+config.toml
+auth.json
+credentials.json
+settings.json
+*.db-*
+/report*.json
+/usage*.json
+*.jsonl
+*.ndjson
+*.har
+*.pcap
+*.pcapng
+*.salt
+*.ai-stats-backup-*
+*.sqlite3-shm
+*.sqlite3-wal
+*.sql
+*.html
+*.pdf
+*.csv
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Only reviewed public documentation belongs in the repository.
+/docs/*
+!/docs/USAGE.md
+!/docs/ARCHITECTURE.md
+!/docs/ASSETS.md
+!/docs/TECHNOLOGY.md
+
+# The example configuration contains placeholders only.
+!contrib/config.example.yaml

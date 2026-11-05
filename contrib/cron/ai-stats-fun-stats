@@ -1,0 +1,8 @@
+# Example line for root's crontab (crontab -e; no username column).
+# Update the destination and public URL for your host.
+# Install the wrapper first:
+#   sudo install -m 755 contrib/cron/ai-stats-refresh-html /usr/local/sbin/ai-stats-refresh-html
+# The config/log/cache directories are created by ai-stats init or an export.
+# Runs at 04:15 in the cron daemon's timezone. The lock skips overlapping runs.
+
+15 4 * * * AI_STATS_CONFIG_DIR=/root/.config/ai-stats /usr/bin/flock -n /root/.config/ai-stats/cache/fun-stats-refresh.lock /usr/local/sbin/ai-stats-refresh-html /var/www/ai-stats/index.html https://stats.example.com/ >> /root/.config/ai-stats/logs/fun-stats-refresh.log 2>&1
